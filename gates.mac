@@ -37,6 +37,13 @@
  * - CCX: Toffoli (CCNOT) gate
  * - FREDKIN: Fredkin (CSWAP) gate
  * - TOFFOLI: Toffoli (CCNOT) gate
+ *
+ * Bell States:
+ * - BELL: Bell state generation circuit
+ * - BELL00: Bell state |Φ+⟩
+ * - BELL01: Bell state |Φ−⟩
+ * - BELL10: Bell state |Ψ+⟩
+ * - BELL11: Bell state |Ψ−⟩
  */
 
  ket0: matrix(
@@ -203,3 +210,9 @@ TOFFOLI: matrix(
   [0,0,0,0,0,0,0,1],
   [0,0,0,0,0,0,1,0]
 );
+
+BELL: CX. kronecker_product(H,I);
+BELL00: BELL. ket00;
+BELL01: BELL. ket01;
+BELL10: BELL. ket10;
+BELL11: BELL. ket11;

@@ -50,7 +50,7 @@ To load and use the `gates.mac` file in Maxima, follow these steps:
   - `H`: Hadamard gate
   - `S`: Phase gate
   - `SX`: Square root of X gate
-  - `T`: T gate (π/8 gate)
+  - `T`: T gate (π/4 gate)
   - `M`: Measurement gate (Z-basis)
   - `R`: Rotation gate (parameterized by θ)
   - `CZ`: Controlled-Z gate
@@ -62,6 +62,12 @@ To load and use the `gates.mac` file in Maxima, follow these steps:
   - `CCX`: Toffoli (CCNOT) gate
   - `FREDKIN`: Fredkin (CSWAP) gate
   - `TOFFOLI`: Toffoli (CCNOT) gate
+  Bell States:
+  - `BELL`: Bell state generation circuit
+  - `BELL00`: Bell state |Φ+⟩
+  - `BELL01`: Bell state |Φ−⟩
+   - `BELL10`: Bell state |Ψ+⟩
+   - `BELL11`: Bell state |Ψ−⟩
 
 ## Functions
 The `gates.mac` file includes the following functions:
