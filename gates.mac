@@ -1,0 +1,205 @@
+/*
+ * Quantum Gates and States Definitions
+ *
+ * This file contains definitions for common quantum states and gates used in quantum computing.
+ *
+ * Quantum States:
+ * - ket0: |0⟩ state vector
+ * - ket1: |1⟩ state vector
+ * - ket00: |00⟩ state vector
+ * - ket01: |01⟩ state vector
+ * - ket10: |10⟩ state vector
+ * - ket11: |11⟩ state vector
+ * - bra0: ⟨0| state vector
+ * - bra1: ⟨1| state vector
+ * - ketplus: |+⟩ state vector (superposition state)
+ * - ketminus: |−⟩ state vector (superposition state)
+ * - braplus: ⟨+| state vector (superposition state)
+ * - braminus: ⟨−| state vector (superposition state)
+ *
+ * Quantum Gates:
+ * - I: Identity gate
+ * - X: Pauli-X (NOT) gate
+ * - Y: Pauli-Y gate
+ * - Z: Pauli-Z gate
+ * - H: Hadamard gate
+ * - S: Phase gate
+ * - SX: Square root of X gate
+ * - T: T gate (π/8 gate)
+ * - M: Measurement gate (Z-basis)
+ * - R: Rotation gate (parameterized by θ)
+ * - CZ: Controlled-Z gate
+ * - Ix4: 4x4 Identity gate
+ * - CX: Controlled-X (CNOT) gate
+ * - AX: Another form of controlled-X gate
+ * - XC: Another form of controlled-X gate
+ * - SWAP: SWAP gate
+ * - CCX: Toffoli (CCNOT) gate
+ * - FREDKIN: Fredkin (CSWAP) gate
+ * - TOFFOLI: Toffoli (CCNOT) gate
+ */
+
+ ket0: matrix(
+  [1],
+  [0]
+);
+ket1: matrix(
+  [0],
+  [1]
+);
+ket00: matrix(
+  [1],
+  [0],
+  [0],
+  [0]
+);
+ket01: matrix(
+  [0],
+  [1],
+  [0],
+  [0]
+);
+ket10: matrix(
+  [0],
+  [0],
+  [1],
+  [0]
+);
+ket11: matrix(
+  [0],
+  [0],
+  [0],
+  [1]
+);
+bra0: matrix(
+  [1,0]
+);
+bra1: matrix(
+  [0,1]
+);
+ketplus: matrix(
+  [1/sqrt(2)],
+  [1/sqrt(2)]
+);
+ketminus: matrix(
+  [1/sqrt(2)],
+  [-1/sqrt(2)]
+);
+braplus: matrix(
+  [1/sqrt(2),1/sqrt(2)]
+);
+braminus: matrix(
+  [1/sqrt(2),-1/sqrt(2)]
+);
+
+I: matrix(
+  [1,0],
+  [0,1]
+);
+X: matrix(
+  [0,1],
+  [1,0]
+);
+pauli_x():=X;
+Y: matrix(
+  [0,-%i],
+  [%i,0]
+);
+pauli_y():=Y;
+Z: matrix(
+  [1,0],
+  [0,-1]
+);
+pauli_z():=Z;
+H: matrix(
+  [1/sqrt(2),1/sqrt(2)],
+  [1/sqrt(2),-1/sqrt(2)]
+);
+hadamard():=H;
+S: matrix(
+  [1,0],
+  [0,%i]
+);
+SX: matrix(
+  [1,1],
+  [1,-1]
+)/sqrt(2);
+T: matrix(
+  [1,0],
+  [0,exp(%i*%pi/4)]
+);
+M: matrix(
+  [1,0],
+  [0,-1]
+);
+R: matrix(
+  [1,0],
+  [0,exp(%i*%theta)]
+);
+CZ: matrix(
+  [1,0,0,0],
+  [0,1,0,0],
+  [0,0,1,0],
+  [0,0,0,-1]
+);
+Ix4: matrix(
+  [1,0,0,0],
+  [0,1,0,0],
+  [0,0,1,0],
+  [0,0,0,1]
+);
+CX: matrix(
+  [1,0,0,0],
+  [0,1,0,0],
+  [0,0,0,1],
+  [0,0,1,0]
+);
+c_not():=CX;
+AX: matrix(
+  [0,1,0,0],
+  [1,0,0,0],
+  [0,0,1,0],
+  [0,0,0,1]
+);
+XC: matrix(
+  [1,0,0,0],
+  [0,0,0,1],
+  [0,0,1,0],
+  [0,1,0,0]
+);
+SWAP: matrix(
+  [1,0,0,0],
+  [0,0,1,0],
+  [0,1,0,0],
+  [0,0,0,1]
+);
+CCX: matrix(
+  [1,0,0,0,0,0,0,0],
+  [0,1,0,0,0,0,0,0],
+  [0,0,1,0,0,0,0,0],
+  [0,0,0,1,0,0,0,0],
+  [0,0,0,0,1,0,0,0],
+  [0,0,0,0,0,1,0,0],
+  [0,0,0,0,0,0,0,1],
+  [0,0,0,0,0,0,1,0]
+);
+FREDKIN: matrix(
+  [1,0,0,0,0,0,0,0],
+  [0,1,0,0,0,0,0,0],
+  [0,0,1,0,0,0,0,0],
+  [0,0,0,1,0,0,0,0],
+  [0,0,0,0,1,0,0,0],
+  [0,0,0,0,0,0,1,0],
+  [0,0,0,0,0,1,0,0],
+  [0,0,0,0,0,0,0,1]
+);
+TOFFOLI: matrix(
+  [1,0,0,0,0,0,0,0],
+  [0,1,0,0,0,0,0,0],
+  [0,0,1,0,0,0,0,0],
+  [0,0,0,1,0,0,0,0],
+  [0,0,0,0,1,0,0,0],
+  [0,0,0,0,0,1,0,0],
+  [0,0,0,0,0,0,0,1],
+  [0,0,0,0,0,0,1,0]
+);
