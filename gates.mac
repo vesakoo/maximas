@@ -107,7 +107,8 @@ X: matrix(
   [0,1],
   [1,0]
 );
-XoI:  kroenecker_product(X,I);
+XoI: kronecker_product(X,I);
+IoX: kronecker_product(I,X);
 pauli_x():=X;
 
 Y: matrix(
@@ -121,14 +122,16 @@ Z: matrix(
   [0,-1]
 );
 pauli_z():=Z;
-XoI: kroenecker_product(Z,I);
+ZoI: kronecker_product(Z,I);
+IoZ: kronecker_product(I,Z);
 
 H: matrix(
   [1/sqrt(2),1/sqrt(2)],
   [1/sqrt(2),-1/sqrt(2)]
 );
 hadamard():=H;
-HoI: kroenecker_product(H,I);
+HoI: kronecker_product(H,I);
+IoH:  kronecker_product(I,H);
 
 S: matrix(
   [1,0],
@@ -218,7 +221,7 @@ TOFFOLI: matrix(
   [0,0,0,0,0,0,1,0]
 );
 
-BELL: CX. kronecker_product(H,I);
+BELL: CX.  kronecker_product(H,I);
 B: BELL;
 BELL00: BELL. ket00;
 B00: BELL00;
