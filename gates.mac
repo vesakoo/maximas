@@ -24,15 +24,15 @@
  * - Z: Pauli-Z gate
  * - H: Hadamard gate
  * - S: Phase gate
- * - SX: Square root of X gate
+ * - SX: Square root of X gate (SX.SX = X)
  * - T: T gate (π/8 gate)
- * - M: Measurement gate (Z-basis)
- * - R: Rotation gate (parameterized by θ)
+ * - M: Z-basis measurement observable (same matrix as Z)
+ * - R: Phase shift gate (parameterized by %theta)
  * - CZ: Controlled-Z gate
  * - Ix4: 4x4 Identity gate
  * - CX: Controlled-X (CNOT) gate
- * - AX: Another form of controlled-X gate
- * - XC: Another form of controlled-X gate
+ * - AX: Anti-controlled-X gate (flips q[1] when q[0] = |0⟩)
+ * - XC: Controlled-X with q[1] as control and q[0] as target
  * - SWAP: SWAP gate
  * - CCX: Toffoli (CCNOT) gate
  * - FREDKIN: Fredkin (CSWAP) gate
@@ -40,13 +40,13 @@
  *
  * Bell States:
  * - BELL: Bell state generation circuit
- * - BELL00: Bell state |Φ+⟩
- * - BELL01: Bell state |Φ−⟩
- * - BELL10: Bell state |Ψ+⟩
- * - BELL11: Bell state |Ψ−⟩
+ * - BELL00: Bell state |Φ+⟩ = (|00⟩ + |11⟩)/√2
+ * - BELL01: Bell state |Ψ+⟩ = (|01⟩ + |10⟩)/√2
+ * - BELL10: Bell state |Φ−⟩ = (|00⟩ − |11⟩)/√2
+ * - BELL11: Bell state |Ψ−⟩ = (|01⟩ − |10⟩)/√2
  */
 
- ket0: matrix(
+ket0: matrix(
   [1],
   [0]
 );
@@ -138,9 +138,9 @@ S: matrix(
   [0,%i]
 );
 SX: matrix(
-  [1,1],
-  [1,-1]
-)/sqrt(2);
+  [1+%i,1-%i],
+  [1-%i,1+%i]
+)/2;
 T: matrix(
   [1,0],
   [0,exp(%i*%pi/4)]
@@ -172,6 +172,7 @@ CX: matrix(
   [0,0,1,0]
 );
 c_not():=CX;
+cnot():=CX;
 AX: matrix(
   [0,1,0,0],
   [1,0,0,0],
